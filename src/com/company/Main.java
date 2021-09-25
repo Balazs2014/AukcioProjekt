@@ -19,5 +19,7 @@ public class Main {
         System.out.println(f1.getLegmagasabbLicit());
         f1.licit(100);
         System.out.println(f1.getLegmagasabbLicit());
+
+        System.out.println(f1);
     }
 }

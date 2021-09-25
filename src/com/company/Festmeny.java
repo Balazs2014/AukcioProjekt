@@ -79,5 +79,12 @@ public class Festmeny {
             this.legutolsoLicitIdeje = LocalDateTime.now();
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s: %s (%s)\n%s%d $ - %s (összesen: %d db)", this.festo, this.cim, this.stilus,
+                ((this.elkelt) ? "elkelt\n" : ""), this.legmagasabbLicit, this.legutolsoLicitIdeje,
+                this.licitekSzama);
+    }
 }
 
