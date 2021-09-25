@@ -27,19 +27,25 @@ public class Festmeny {
     }
 
     public int getLicitekSzama() {
-        return licitekSzama;
+        return this.licitekSzama;
     }
 
     public int getLegmagasabbLicit() {
-        return legmagasabbLicit;
+        int hossz = Integer.toString(this.legmagasabbLicit).length() - 2;
+        int elsoKetto = Integer.parseInt(Integer.toString(this.legmagasabbLicit).substring(0, 2));
+        for (int i = 0; i < hossz; i++) {
+            elsoKetto *= 10;
+        }
+        this.legmagasabbLicit = elsoKetto;
+        return this.legmagasabbLicit;
     }
 
     public LocalDateTime getLegutolsoLicitIdeje() {
-        return legutolsoLicitIdeje;
+        return this.legutolsoLicitIdeje;
     }
 
     public boolean getElkelt() {
-        return elkelt;
+        return this.elkelt;
     }
 
     public void setElkelt(boolean elkelt) {
@@ -47,11 +53,31 @@ public class Festmeny {
     }
 
     public void licit() {
-
+        if (this.elkelt == true) {
+            System.out.println("A festmény elkelt!");
+        } else if (this.licitekSzama == 0) {
+            this.legmagasabbLicit = 100;
+            this.licitekSzama++;
+            this.legutolsoLicitIdeje = LocalDateTime.now();
+        } else {
+            licit(10);
+        }
     }
 
     public void licit(int mertek) {
-
+        if (this.elkelt == true) {
+            System.out.println("A festmény elkelt!");
+        } else if (mertek < 10 || mertek > 100) {
+            System.out.println("A paraméter csak 10 és 100 közötti szám lehet!");
+        } else if (this.licitekSzama == 0) {
+            this.legmagasabbLicit = 100;
+            this.licitekSzama++;
+            this.legutolsoLicitIdeje = LocalDateTime.now();
+        } else {
+            this.legmagasabbLicit += legmagasabbLicit * (double)(mertek) / 100;
+            this.licitekSzama++;
+            this.legutolsoLicitIdeje = LocalDateTime.now();
+        }
     }
 }
 
