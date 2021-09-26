@@ -11,6 +11,7 @@ import java.util.*;
 public class Main {
 
     static Scanner sc = new Scanner(System.in);
+    static Random rnd = new Random();
 
     public static void main(String[] args) {
         Festmeny f1 = new Festmeny("Jani", "Jani", "román");
@@ -49,6 +50,12 @@ public class Main {
             fReader.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+
+        int listaHossza = festmenyLista.size();
+        for (int i = 0; i < 20; i++) {
+            int rndSzam = rnd.nextInt(listaHossza - 0 + 1) + 0;
+            festmenyLista.get(rndSzam).licit();
         }
 
         String s = "";
