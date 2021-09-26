@@ -7,9 +7,9 @@ import java.util.List;
 public class Festmenyek {
     private List<Festmeny> festmenyLista;
 
-    public Festmenyek(Festmeny[] festmenyTomb){
+    public Festmenyek(List<Festmeny> festmenyLista){
         this.festmenyLista = new ArrayList<>();
-        this.festmenyLista.addAll(Arrays.asList(festmenyTomb));
+        this.festmenyLista.addAll(festmenyLista);
     }
 
     @Override
