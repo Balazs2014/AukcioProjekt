@@ -2,6 +2,9 @@ package com.company;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Festmeny {
     private String cim;
@@ -12,10 +15,17 @@ public class Festmeny {
     private LocalDateTime legutolsoLicitIdeje;
     private boolean elkelt = false;
 
+    private List<Festmeny> festmenyLista;
+
     public Festmeny(String cim, String festo, String stilus) {
         this.cim = cim;
         this.festo = festo;
         this.stilus = stilus;
+    }
+
+    public Festmeny(Festmeny[] festmenyTomb) {
+        this.festmenyLista = new ArrayList<>();
+        this.festmenyLista.addAll(Arrays.asList(festmenyTomb));
     }
 
     public String getFesto() {
