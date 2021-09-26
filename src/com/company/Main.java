@@ -22,7 +22,6 @@ public class Main {
 
 
 
-
         System.out.print("Hány festményt szeretnél felvenni? ");
         int darab = sc.nextInt();
         String cim, festo, stilus;
@@ -37,8 +36,9 @@ public class Main {
             Festmeny p = new Festmeny(cim, festo, stilus);
             festmenyLista.add(p);
         }
-        Festmenyek festmenyek = new Festmenyek(festmenyLista);
-        System.out.println(festmenyek);
+        Festmenyek festmenyekKonzol = new Festmenyek(festmenyLista);
+        Festmenyek festmenyekFajl = new Festmenyek("festmenyek.csv");
+
         /*f1.licit();
         System.out.println(f1.getLegmagasabbLicit());
         f1.licit();
