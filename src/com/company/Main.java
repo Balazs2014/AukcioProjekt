@@ -2,11 +2,11 @@ package com.company;
 
 import java.awt.image.AreaAveragingScaleFilter;
 import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.nio.charset.Charset;
+import java.util.*;
 
 public class Main {
 
@@ -19,8 +19,6 @@ public class Main {
         List<Festmeny> festmenyLista = new ArrayList<Festmeny>();
         festmenyLista.add(f1);
         festmenyLista.add(f2);
-
-
 
         System.out.print("Hány festményt szeretnél felvenni? ");
         int darab = sc.nextInt();
@@ -36,8 +34,28 @@ public class Main {
             Festmeny p = new Festmeny(cim, festo, stilus);
             festmenyLista.add(p);
         }
-        Festmenyek festmenyekKonzol = new Festmenyek(festmenyLista);
-        Festmenyek festmenyekFajl = new Festmenyek("festmenyek.csv");
+
+        try {
+            FileReader fReader = new FileReader("festmenyek.csv", Charset.defaultCharset());
+            BufferedReader bReader = new BufferedReader(fReader);
+            String sor = bReader.readLine();
+            while (sor != null) {
+                String[] adatok = sor.split(";");
+                Festmeny festmeny = new Festmeny(adatok[0], adatok[1], adatok[2]);
+                festmenyLista.add(festmeny);
+                sor = bReader.readLine();
+            }
+            bReader.close();
+            fReader.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        String s = "";
+        for (Festmeny festmeny: festmenyLista) {
+            s += festmeny + "\n";
+        }
+        System.out.println(s);
 
         /*f1.licit();
         System.out.println(f1.getLegmagasabbLicit());
