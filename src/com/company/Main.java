@@ -54,15 +54,52 @@ public class Main {
 
         int listaHossza = festmenyLista.size();
         for (int i = 0; i < 20; i++) {
-            int rndSzam = rnd.nextInt(listaHossza - 0 + 1) + 0;
+            int rndSzam = rnd.nextInt(listaHossza - 0) + 0;
             festmenyLista.get(rndSzam).licit();
         }
 
         String s = "";
-        for (Festmeny festmeny: festmenyLista) {
+        for (Festmeny festmeny : festmenyLista) {
             s += festmeny + "\n";
         }
+        festmenyLista.get(0).setElkelt(true);
         System.out.println(s);
+
+        System.out.print("Adja meg a festmény sorszámát: ");
+        int sorszam = sc.nextInt();
+        do {
+            try {
+                while ((sorszam < 0 || sorszam >= listaHossza - 1)) {
+                    System.out.print("Hibás sorszám! Adjon meg létező sorszámot: ");
+                    sorszam = sc.nextInt();
+                }
+                while (festmenyLista.get(sorszam - 1).getElkelt()) {
+                    System.out.print("A festmény elkelt! Adjon meg új sorszámot: ");
+                    sorszam = sc.nextInt();
+                }
+
+                int mertek;
+                System.out.print("Mekkora mértékkel szeretne licitálni? ");
+                try {
+                    mertek = sc.nextInt();
+                    if (mertek % 1 == 0) {
+                        festmenyLista.get(sorszam - 1).licit(mertek);
+                    } else {
+                        festmenyLista.get(sorszam - 1).licit();
+                    }
+                } catch (Exception e2) {
+                    System.out.println("Nem számot adott meg!");
+                }
+            } catch (Exception e) {
+                System.out.println("Nem számot adott meg!");
+            }
+        } while (sorszam != 0);
+
+        if (sorszam == 0) {
+            System.out.println("Licit vége");
+        }
+
+
 
         /*f1.licit();
         System.out.println(f1.getLegmagasabbLicit());

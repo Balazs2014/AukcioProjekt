@@ -52,7 +52,7 @@ public class Festmeny {
     }
 
     public void setElkelt(boolean elkelt) {
-
+        this.elkelt = elkelt;
     }
 
     public void licit() {
